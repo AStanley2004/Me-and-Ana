@@ -1,0 +1,230 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+.slideshow-container {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#slideshow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  transition: background-image 1s ease-in-out;
+}
+
+.postit-container {
+  position: absolute;
+  bottom: 100px; /* Raised from 20px */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 300px;
+}
+
+.postit {
+  width: 300px;
+  height: 300px;
+  background-color: #ffc0cb;
+  background-image: url('assets/images/2024/pink-notebook-paper-texture.jpg');
+  background-size: cover;
+  background-blend-mode: multiply;
+  color: #000;
+  font-weight: bold;
+  font-size: 48px;
+  font-family: 'Playfair Display', serif;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  transform: rotate(-5deg);
+  transition: transform 0.3s;
+  border-radius: 10px;
+  border: 1px solid #e6a6b2;
+}
+
+.postit:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.heart-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0; 
+}
+
+.heart {
+  position: absolute;
+  color: pink;
+  font-size: 20px;
+  opacity: 0.7;
+  transform: rotate(calc(10deg * var(--angle)));
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(var(--angle, 0deg));
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(var(--x-move), var(--y-move)) rotate(var(--angle, 0deg));
+    opacity: 0.4;
+  }
+}
+
+.heart {
+  position: absolute;
+  color: pink;
+  opacity: 0.7;
+  font-size: 20px;
+  transform: rotate(calc(10deg * var(--angle)));
+  animation: float linear infinite;
+  animation-duration: var(--duration);
+}
+
+#love-note {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 192, 203, 0.4); /* soft pink overlay */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.note-box {
+  background-color: white;
+  border: 2px solid pink;
+  padding: 30px 40px;
+  border-radius: 15px;
+  font-size: 24px;
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.note-box button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ffc0cb;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.page-title {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 85px;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  z-index: 5;
+  pointer-events: none; /* So clicks go through to hearts/buttons */
+}
+
+.subtitle {
+  position: absolute;
+  top: 280px; /* adjust as needed based on how it looks */
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: white;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Wobble effect */
+@keyframes wobble {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(10deg); }
+  50%  { transform: rotate(-10deg); }
+  75%  { transform: rotate(6deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.wobble {
+  animation: wobble 0.4s ease-in-out;
+}
+
+/* Confetti drop animation */
+
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background-color: pink;
+  z-index: 9999;
+  border-radius: 50%;
+  opacity: 1;
+  pointer-events: none;
+  transition: transform 2s ease-out, opacity 2s ease-out;
+}
+
+#record-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#record-player img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: spin 5s linear infinite;
+  transition: filter 0.3s ease;
+}
+
+/* Pause animation when audio paused */
+#record-player.paused img {
+  animation-play-state: paused;
+  filter: grayscale(70%);
+}
+
+/* Spin animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>2024 Memories</title>
+  <link rel="stylesheet" href="2024.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="title-with-lines">
+  <div class="line"></div>
+  <h1 class="section-title">2024</h1>
+  <div class="line"></div>
+</div>
+
+<div class="slider-row scroll-right">
+  <div class="slider-track" id="row1"></div>
+</div>
+
+<div class="slider-row scroll-left">
+  <div class="slider-track" id="row2"></div>
+</div>
+
+<div class="slider-row scroll-right">
+  <div class="slider-track" id="row3"></div>
+</div>
+
+  <div style="text-align:center; margin: 40px;">
+    <a href="index.html" style="font-size: 24px; color: white; text-decoration: underline;">← Back to Home</a>
+  </div>
+
+  <script src="2024.js"></script>
+
+<!-- Spinning Record Player -->
+<div id="record-player" title="Play/Pause Music">
+  <img src="assets/record.png" alt="Record Player" />
+  <audio id="record-audio" src="assets/archer.mp3" preload="auto"></audio>
+</div>
+
+<div id="cat-container">
+  <img id="running-cat" src="assets/catRun.gif" alt="Running Cat">
+  <div id="cat-bubble">Meow!💖</div>
+</div>
+
+<audio id="meow-sound" src="assets/meow.mp3"></audio>
+
+</body>
+</html>

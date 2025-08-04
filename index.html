@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Memories</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="slideshow"></div>
+
+  <h1 class="page-title">To My Beautiful Baby</h1>
+
+<h2 class="subtitle">May this serve as a lifetime of our memories together</h2>
+
+  <div class="heart-layer" id="heart-layer"></div>
+
+  <div class="postit-container">
+    <a href="2024.html" class="postit">2024</a>
+    <a href="2025.html" class="postit">2025</a>
+  </div>
+
+  <audio autoplay loop>
+    <source src="assets/audio/lover.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div id="love-note">
+  <div class="note-box">
+    <p>Good job baby you found the secret :) I love you so so SO much</p>
+    <button onclick="document.getElementById('love-note').style.display='none'">Close</button>
+  </div>
+</div>
+
+<!-- Spinning Record Player -->
+<div id="record-player" title="Play/Pause Music">
+  <img src="assets/record.png" alt="Record Player" />
+  <audio id="record-audio" src="assets/lover.mp3" preload="auto"></audio>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>New York Memories</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fef3f3;
+    }
+
+    .map-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: url('assets/manhattan-map.jpg') no-repeat center center;
+      background-size: contain;
+    }
+
+    .marker {
+      position: absolute;
+      width: 40px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      z-index: 2;
+    }
+
+    .marker:hover {
+      transform: scale(1.2);
+    }
+
+    /* Updated marker positions */
+    .central-park { top: 21.80%; left: 52.22%; }
+    .times-square { top: 38.05%; left: 46.32%; }
+    .summit-one { top: 43.47%; left: 50.28%; }
+    .hotel-indigo { top: 76.11%; left: 45.21%; }
+
+    /* Lightbox overlay */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 10;
+      overflow-y: auto;
+      padding: 40px 20px; /* for scrollable content */
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+   .lightbox .close-btn {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+    .album {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 90%;
+    }
+
+    /* New wrapper for photos */
+   .photo-wrapper {
+  width: 250px;     /* default portrait width */
+  height: 350px;    /* consistent height for all */
+  border-radius: 10px;
+  box-shadow: 0 0 10px #fff;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.photo-wrapper img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+    .back-link {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      background-color: #ff8cb7;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 15;
+    }
+
+    .back-link:hover {
+      background-color: #ff6ca2;
+    }
+
+#record-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#record-player img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: spin 5s linear infinite;
+  transition: filter 0.3s ease;
+}
+
+/* Pause animation when audio paused */
+#record-player.paused img {
+  animation-play-state: paused;
+  filter: grayscale(70%);
+}
+
+/* Spin animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+  </style>
+</head>
+<body>
+
+  <div class="map-container">
+    <img src="assets/pin1.png" class="marker central-park" onclick="openAlbum('centralPark')" alt="Central Park Pin">
+    <img src="assets/pin2.png" class="marker times-square" onclick="openAlbum('timesSquare')" alt="Times Square Pin">
+    <img src="assets/pin3.png" class="marker summit-one" onclick="openAlbum('summitOne')" alt="Summit One Pin">
+    <img src="assets/pin1.png" class="marker hotel-indigo" onclick="openAlbum('hotelIndigo')" alt="Hotel Indigo Pin">
+  </div>
+
+  <!-- Central Park Album -->
+  <div id="centralPark" class="lightbox">
+    <div class="close-btn" onclick="closeAlbum()">×</div>
+    <div class="album">
+      <div class="photo-wrapper">
+         <img src="assets/images/2025/nyMapPics/nyParkPose1.jpg" alt="Times Square">
+      </div>
+<div class="photo-wrapper">
+         <img src="assets/images/2025/nyMapPics/nyMuseum.jpg" alt="Times Square">
+      </div>
+<div class="photo-wrapper">
+         <img src="assets/images/2025/nyMapPics/nyParkPose2.jpg" alt="Times Square">
+      </div>
+      <!-- Add more Central Park photos wrapped similarly -->
+    </div>
+  </div>
+
+  <!-- Times Square Album -->
+  <div id="timesSquare" class="lightbox">
+    <div class="close-btn" onclick="closeAlbum()">×</div>
+    <div class="album">
+      <div class="photo-wrapper">
+         <img src="assets/images/2025/nyMapPics/timesSquareKiss.jpg" alt="Times Square">
+      </div>
+<div class="photo-wrapper">
+         <img src="assets/images/2025/nyMapPics/timesSquarePose.jpg" alt="Times Square">
+      </div>
+<div class="photo-wrapper">
+         <img src="assets/images/2025/nyMapPics/timesSquareUs.jpg" alt="Times Square">
+      </div>
+<div class="photo-wrapper">
+         <img src="assets/images/2025/nyMapPics/timesSquarePose2.jpg" alt="Times Square">
+      </div>
+<div class="photo-wrapper">
+         <img src="assets/images/2025/nyMapPics/timesSquareHug2.jpg" alt="Times Square">
+      </div>
+<div class="photo-wrapper">
+         <img src="assets/images/2025/nyMapPics/trainStation.jpg" alt="Times Square">
+      </div>
+<div class="photo-wrapper">
+         <img src="assets/images/2025/nyMapPics/nyTrain.jpg" alt="Times Square">
+      </div>
+      <!-- Add more Times Square photos wrapped similarly -->
+    </div>
+  </div>
+
+  <!-- Summit One Album -->
+  <div id="summitOne" class="lightbox">
+    <div class="close-btn" onclick="closeAlbum()">×</div>
+    <div class="album">
+      <div class="photo-wrapper">
+        <img src="assets/images/2025/nyMapPics/nyView2.jpg" alt="Summit One">
+      </div>
+<div class="photo-wrapper">
+        <img src="assets/images/2025/nyMapPics/nyViewPose2.jpg" alt="Summit One">
+      </div>
+      <div class="photo-wrapper">
+        <img src="assets/images/2025/nyMapPics/nyView3.jpg" alt="Summit One">
+      </div>
+<div class="photo-wrapper">
+        <img src="assets/images/2025/nyMapPics/nyViewBite.jpg" alt="Summit One">
+      </div>
+<div class="photo-wrapper">
+        <img src="assets/images/2025/nyMapPics/nyViewDeck.jpg" alt="Summit One">
+      </div>
+<div class="photo-wrapper">
+        <img src="assets/images/2025/nyMapPics/nyViewFoodPic.jpg" alt="Summit One">
+      </div>
+<div class="photo-wrapper">
+        <img src="assets/images/2025/nyMapPics/nyViewPose1.jpg" alt="Summit One">
+      </div>
+      <!-- Add more Summit One photos wrapped similarly -->
+    </div>
+  </div>
+
+  <!-- Hotel Indigo Album -->
+  <div id="hotelIndigo" class="lightbox">
+    <div class="close-btn" onclick="closeAlbum()">×</div>
+    <div class="album">
+      <div class="photo-wrapper">
+        <img src="assets/images/2025/nyMapPics/hotelGaze.jpg" alt="Hotel Indigo / LES">
+      </div>
+<div class="photo-wrapper">
+        <img src="assets/images/2025/nyMapPics/nyRestaurantPose1.jpg" alt="Hotel Indigo / LES">
+      </div>
+<div class="photo-wrapper">
+        <img src="assets/images/2025/nyMapPics/hotelKiss.jpg" alt="Hotel Indigo / LES">
+      </div>
+<div class="photo-wrapper">
+        <img src="assets/images/2025/nyMapPics/nyRestaurantSmile.jpg" alt="Hotel Indigo / LES">
+      </div>
+      <!-- Add more Hotel Indigo photos wrapped similarly -->
+    </div>
+  </div>
+
+  <a href="2025.html" class="back-link">← Back to 2025</a>
+
+  <script>
+    function openAlbum(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function closeAlbum() {
+      document.querySelectorAll('.lightbox').forEach(el => el.classList.remove('active'));
+    }
+  </script>
+
+<script>
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.photo-wrapper img').forEach(img => {
+      if (img.naturalWidth > img.naturalHeight) {
+        // Landscape image – expand wrapper
+        img.parentElement.style.width = '450px'; // Wider for landscape
+      }
+    });
+  });
+</script>
+
+<!-- Spinning Record Player -->
+<div id="record-player" title="Play/Pause Music">
+  <img src="assets/record.png" alt="Record Player" />
+  <audio id="record-audio" src="assets/paperRings.mp3" preload="auto"></audio>
+</div>
+
+<script>
+  const recordPlayer = document.getElementById('record-player');
+  const audio = document.getElementById('record-audio');
+
+  // Initially paused
+  recordPlayer.classList.add('paused');
+
+  recordPlayer.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      recordPlayer.classList.remove('paused');
+    } else {
+      audio.pause();
+      recordPlayer.classList.add('paused');
+    }
+  });
+
+  // Optional: Pause animation if audio ends naturally
+  audio.addEventListener('ended', () => {
+    recordPlayer.classList.add('paused');
+  });
+</script>
+
+</body>
+</html>
